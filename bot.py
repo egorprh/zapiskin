@@ -11,7 +11,7 @@ from config_reader import config
 from aiogram import Bot, Dispatcher
 
 from db.pgapi import PGApi
-from handlers import common, register, addsub, add_service, add_employee, add_schedule, appointment
+from handlers import common, register, add_service, add_employee, add_schedule, appointment, cmd_cancel, cancel_my_appointment
 
 # https://t.me/podpiskin007_bot
 
@@ -49,10 +49,12 @@ async def main():
     bot = Bot(token=config.bot_token.get_secret_value())
 
     dp.include_routers(
+        cmd_cancel.router,
         add_service.router,
         add_employee.router,
         add_schedule.router,
         appointment.router,
+        cancel_my_appointment.router,
         common.router
     )
 

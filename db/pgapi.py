@@ -95,6 +95,7 @@ class PGApi:
         sql, params = self.format_args(sql, params)
         return await self.execute(sql, *params, fetchval=True)
 
+        # TODO ввести LIMIT в pg api
     async def get_records(self, table, params=None):
         if params is None:
             params = {}
@@ -137,6 +138,12 @@ class PGApi:
 
     async def delete_records(self, table_name: str):
         await self.execute(f"DELETE FROM {table_name} WHERE TRUE", execute=True)
+
+    #TODO реализовать функции удаления из БД
+    async def delete_record(self, table, params):
+        sql = f"DELETE FROM {table} WHERE "
+        sql, params = self.format_args(sql, params)
+        return await self.execute(sql, *params, execute=True)
 
     async def count_records(self, table: str, params=None):
         if params is None:
