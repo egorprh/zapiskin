@@ -1,12 +1,10 @@
 from aiogram import Router
-from aiogram.fsm.state import StatesGroup, State
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
 from db.pgapi import PGApi
-
-from datetime import datetime, timezone
 
 # TODO Валидация на количество введенных символом и ввведно сообщения, обработка эксепшенов
 
@@ -16,6 +14,7 @@ router = Router()
 
 class AppointmentData(StatesGroup):
     slots = State()
+
 
 @router.message(StateFilter(None), Command("appointment"))
 async def get_appointments(message: Message, state: FSMContext, db: PGApi):
@@ -48,7 +47,7 @@ async def appointment(message: Message, state: FSMContext, db: PGApi):
 
     data = await state.get_data()
 
-    #TODO получать userid из users?
+    # TODO получать userid из users?
     await db.insert_record('appointment', {'slot_id': slotid,
                                            'user_id': data.get('userid')})
     await state.clear()

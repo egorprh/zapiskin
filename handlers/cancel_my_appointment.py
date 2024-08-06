@@ -1,12 +1,10 @@
 from aiogram import Router
-from aiogram.fsm.state import StatesGroup, State
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
 from db.pgapi import PGApi
-
-from datetime import datetime, timezone
 
 # TODO Валидация на количество введенных символом и ввведно сообщения, обработка эксепшенов
 
@@ -47,7 +45,7 @@ async def cancel_appointment(message: Message, state: FSMContext, db: PGApi):
     except ValueError:
         return await message.reply("Пожалуйста, введите числовое значение")
 
-    #TODO Проверка, что это точно моя запись! Не чужая. Для админа наверное будет админка
+    # TODO Проверка, что это точно моя запись! Не чужая. Для админа наверное будет админка
     # + Проврка на то, если такая запись
     await db.delete_record('appointment', {'id': app_id})
     await state.clear()

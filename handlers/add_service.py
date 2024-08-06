@@ -1,13 +1,10 @@
 from aiogram import Router
-from aiogram.fsm.state import StatesGroup, State
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
 from db.pgapi import PGApi
-
-from datetime import datetime, timezone
-
 
 # TODO Валидация на количество введенных символом и ввведно сообщения, обработка эксепшенов
 
@@ -52,8 +49,8 @@ async def process_price(message: Message, state: FSMContext, db: PGApi):
 
     data = await state.get_data()
     await db.insert_record('service', {'name': data.get('name'),
-                                             'price': data.get('price'),
-                                             'description': data.get('description')})
+                                       'price': data.get('price'),
+                                       'description': data.get('description')})
     await state.clear()
 
     await message.reply("Услуга успешно добавлена")

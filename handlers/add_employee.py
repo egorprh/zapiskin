@@ -1,12 +1,10 @@
 from aiogram import Router
-from aiogram.fsm.state import StatesGroup, State
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
 from db.pgapi import PGApi
-
-from datetime import datetime, timezone
 
 # TODO Валидация на количество введенных символом и ввведно сообщения, обработка эксепшенов
 

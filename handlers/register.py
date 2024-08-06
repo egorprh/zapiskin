@@ -1,16 +1,16 @@
 import json
 
-from aiogram import Router, F
-from aiogram.fsm.state import StatesGroup, State
+from aiogram import Router
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message
 
 router = Router()
 FILENAME = 'user_data.json'
 
 
-#TODO Валидация введенных данных
+# TODO Валидация введенных данных
 
 # состояния
 class Form(StatesGroup):

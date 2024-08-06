@@ -1,23 +1,17 @@
 import asyncio
 import logging
-from datetime import datetime
-
-from aiogram.fsm.storage.memory import MemoryStorage
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from misc import mailing
-
-from config_reader import config
 
 from aiogram import Bot, Dispatcher
+from aiogram.fsm.storage.memory import MemoryStorage
 
+from config_reader import config
 from db.pgapi import PGApi
-from handlers import common, register, add_service, add_employee, add_schedule, appointment, cmd_cancel, cancel_my_appointment
+from handlers import common, add_service, add_employee, add_schedule, appointment, cmd_cancel, \
+    cancel_my_appointment
 
 # https://t.me/podpiskin007_bot
 
 logger = logging.getLogger(__name__)
-
-
 
 
 async def create_tables(db: PGApi):

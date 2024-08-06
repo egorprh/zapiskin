@@ -1,10 +1,10 @@
 from aiogram import Router, F
-from aiogram.fsm.state import StatesGroup, State
 from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import StatesGroup, State
 from aiogram.types import Message, ReplyKeyboardRemove
-
 from handlers.ordering_food import available_food_names, available_food_sizes
+
 from keyboards.simple_row import make_row_keyboard
 
 
@@ -66,5 +66,3 @@ async def food_size_chosen_incorrectly(message: Message):
              "Пожалуйста, выберите один из вариантов из списка ниже:",
         reply_markup=make_row_keyboard(available_food_sizes)
     )
-
-

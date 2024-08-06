@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 
 from aiogram import Bot
 
@@ -15,4 +15,3 @@ async def mailing(bot: Bot, db: PGApi):
             await bot.send_message(record['userid'],
                                    f"Завтра наступит дата оплаты подписки {record['name']}. "
                                    f"Сумма к оплате {record['price']}")
-

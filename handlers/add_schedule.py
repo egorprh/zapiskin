@@ -1,12 +1,11 @@
+from datetime import datetime, timedelta
+
+import pytz
 from aiogram import Router
 from aiogram.filters import Command, StateFilter
 from aiogram.types import Message
 
 from db.pgapi import PGApi
-
-from datetime import datetime, timedelta
-
-import pytz
 
 # TODO Валидация на количество введенных символом и ввведно сообщения, обработка эксепшенов
 

@@ -4,7 +4,7 @@ from random import randint
 from aiogram import types
 from aiogram.types import ChatActions
 from aiogram.utils import emoji
-from aiogram.utils.markdown import text, italic, spoiler, hspoiler, code, pre
+from aiogram.utils.markdown import text
 
 
 async def typing(message: types.Message):
@@ -137,7 +137,8 @@ lang_strings['how_translate:'] = emoji.emojize(':abc: Как переводит�
 lang_strings['translate:'] = emoji.emojize(':point_right: Перевод: ')
 lang_strings['pronounce:'] = emoji.emojize(':sound: Произношение: ')
 lang_strings['no_voice'] = emoji.emojize('А произношение ты не записал. Не забудь в следующий раз. :point_up:')
-lang_strings['training_is_over'] = emoji.emojize(":thumbsup: Фух! Тренировка окончена! Количество правильных ответов: {var}. Дай пять!")
+lang_strings['training_is_over'] = emoji.emojize(
+    ":thumbsup: Фух! Тренировка окончена! Количество правильных ответов: {var}. Дай пять!")
 lang_strings['rate_not_saved'] = emoji.emojize(":pensive: Не удалось сохранить оценку, обратитесь в поддержку")
 lang_strings['burst_emoji'] = emoji.emojize(":boom:")
 lang_strings['show_word'] = emoji.emojize(":cloud: Не помню, покажи слово")

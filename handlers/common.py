@@ -1,11 +1,7 @@
-import json
-
-from aiogram import F, Router
+from aiogram import Router
 from aiogram.filters import Command
-from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import default_state
-from aiogram.types import Message, ReplyKeyboardRemove, FSInputFile
+from aiogram.types import Message, ReplyKeyboardRemove
 
 from db.pgapi import PGApi
 
@@ -32,7 +28,7 @@ async def cmd_start(message: Message, state: FSMContext, db: PGApi):
 
 @router.message(Command(commands=["getmyappointments"]))
 async def cmd_cancel(message: Message, state: FSMContext, db: PGApi):
-    #TODO Вынести в отдельную функцию и переиспользовать
+    # TODO Вынести в отдельную функцию и переиспользовать
     sql = 'SELECT a.id AS aid, ss.* FROM service_slot ss ' \
           'LEFT JOIN appointment a ON ss.id = a.slot_id ' \
           'WHERE a.user_id = $1 '
@@ -60,4 +56,4 @@ async def get_commands(message: Message, db: PGApi):
         '/cancelmyapp \n'
     )
 
-#TODO Заглушку базовую реализовать
+# TODO Заглушку базовую реализовать

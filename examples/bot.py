@@ -1,21 +1,20 @@
 # импорты
-from config_reader import config
 import asyncio
 import logging
 import re
 from datetime import datetime
 
 from aiogram import Bot, Dispatcher, types
+from aiogram import F
 from aiogram import html
+from aiogram.client.default import DefaultBotProperties
+from aiogram.enums import ParseMode
+from aiogram.filters import Command, CommandObject, CommandStart
+from aiogram.types import LinkPreviewOptions
+from aiogram.types import Message
 from aiogram.utils.formatting import Text, Bold
 
-from aiogram import F
-from aiogram.types import Message
-from aiogram.filters import Command, CommandObject, CommandStart
-from aiogram.enums import ParseMode
-from aiogram.types import LinkPreviewOptions
-
-from aiogram.client.default import DefaultBotProperties
+from config_reader import config
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
@@ -47,6 +46,7 @@ async def cmd_test1(message: types.Message):
 async def cmd_test2(message: types.Message):
     await message.reply("Test 2")
 
+
 # Если не указать фильтр F.text,
 # то хэндлер сработает даже на картинку с подписью /test
 @dp.message(F.text, Command("test"))
@@ -73,6 +73,7 @@ async def any_message(message: Message):
 @dp.message(Command("info"))
 async def cmd_info(message: types.Message, started_at: str):
     await message.answer(f"Бот запущен {started_at}")
+
 
 # Экранирование <Cлавик777>
 @dp.message(Command("hello"))
@@ -127,6 +128,7 @@ async def cmd_settimer(
 @dp.message(Command("custom1", prefix="%"))
 async def cmd_custom1(message: Message):
     await message.answer("Вижу команду!")
+
 
 @dp.message(Command("help"))
 @dp.message(CommandStart(
@@ -227,7 +229,6 @@ async def echo_with_time(message: Message):
     added_text = html.underline(f"Создано в {time_now}")
     # Отправляем новое сообщение с добавленным текстом
     await message.answer(f"{message.html_text}\n\n{added_text}", parse_mode="HTML")
-
 
 
 # Запуск процесса поллинга новых апдейтов

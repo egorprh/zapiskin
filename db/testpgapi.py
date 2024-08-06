@@ -1,7 +1,7 @@
+import asyncio
 from datetime import datetime
 
 from db.pgapi import PGApi
-import asyncio
 
 
 async def test(db):
